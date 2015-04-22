@@ -24,5 +24,13 @@ class ExecutionContexts {
   }
   
 
-  void buildXml(xml.XmlBuilder builder) {}
+  void buildXml(xml.XmlBuilder builder) {
+    builder.element('ExecutionContexts', namespace : ns_rts,
+        attributes : {
+          'rts:id' : id,
+          'rts:rate' : rate,
+          'rts:kind' : kind
+        }
+    );
+  }
 }

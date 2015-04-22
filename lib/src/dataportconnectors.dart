@@ -61,7 +61,30 @@ class DataPortConnectors {
   
   
   void buildXml(xml.XmlBuilder builder) {
-    
+    builder.element('DataPortConnectors', namespace: ns_rts,
+          attributes: {
+            'rts:name': name,
+            'rts:connectorId': connectorId,
+            'rts:dataType' : dataType,
+            'rts:dataflowType' : dataflowType,
+            'rts:interfaceType' : interfaceType,
+            'rts:subscriptionType' : subscriptionType,
+            'rts:pushInterval' : pushInterval,
+            'rtsExt:visible' : visible
+          },
+          nest : () {
+            sourceDataPort.buildXml(builder);
+            targetDataPort.buildXml(builder);
+            properties.keys.forEach((name_) {
+              builder.element('Properties', namespace : ns_rtsExt,
+                  attributes : {
+                    'rtsExt:name' : name_,
+                    'rtsExt:value' : properties[name_]
+                  }
+              );
+            });
+          }
+      );
   }
 
 }

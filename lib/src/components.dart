@@ -7,7 +7,7 @@ import 'dataports.dart';
 import 'configurations.dart';
 import 'executioncontexts.dart';
 import 'miscs.dart';
-
+import 'serviceports.dart';
 
 class Components {
   
@@ -20,6 +20,7 @@ class Components {
   String visible;
   
   List<DataPorts> dataPorts;
+  List<ServicePorts> servicePorts;
   List<ConfigurationSets> configurationSets;
   List<ExecutionContexts> executionContexts;
   Location location;
@@ -36,6 +37,7 @@ class Components {
   
   Components() {
     dataPorts = new List<DataPorts>();
+    servicePorts = new List<ServicePorts>();
     configurationSets = new List<ConfigurationSets>();
     executionContexts = new List<ExecutionContexts>();
     location = new Location();
@@ -63,6 +65,10 @@ class Components {
     dataPorts.clear();
     elem.findAllElements('DataPorts', namespace : ns_rts).forEach((elem) {
       dataPorts.add(DataPorts.load(elem));
+    });   
+    servicePorts.clear();
+    elem.findAllElements('ServicePorts', namespace : ns_rts).forEach((elem) {
+      servicePorts.add(ServicePorts.load(elem));
     });
     configurationSets.clear();
     elem.findAllElements('ConfigurationSets', namespace : ns_rts).forEach((elem) {

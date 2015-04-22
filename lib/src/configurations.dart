@@ -16,6 +16,7 @@ class ConfigurationSets {
   
   void loadFromXmlElement(xml.XmlElement elem) {
     configurationDatas = new List<ConfigurationData>();
+    
     id = elem.getAttribute('id', namespace: ns_rts);
     
     configurationDatas.clear();
@@ -29,7 +30,18 @@ class ConfigurationSets {
   }
   
 
-  void buildXml(xml.XmlBuilder builder) {}
+  void buildXml(xml.XmlBuilder builder) {
+    builder.element('ConfigurationSets', namespace : ns_rts,
+        attributes : {
+          'rts:id' : id
+        },
+        nest : () {
+          configurationDatas.forEach((c) {
+            c.buildXml(builder);
+          });
+        }
+    );
+  }
 }
 
 class ConfigurationData {
@@ -48,5 +60,12 @@ class ConfigurationData {
   }
   
 
-  void buildXml(xml.XmlBuilder builder) {}
+  void buildXml(xml.XmlBuilder builder) {
+    builder.element('ConfigurationData', namespace: ns_rts, 
+        attributes : {
+          'rts:name' : name,
+          'rts:data' : data
+        }
+        );
+  }
 }

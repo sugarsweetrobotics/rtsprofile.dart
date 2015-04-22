@@ -17,38 +17,31 @@ class ServicePortConnectors {
   String subscriptionType;
   String visible;
   
-  SourceDataPort sourceDataPort;
-  TargetDataPort targetDataPort;
+  SourceServicePort sourceServicePort;
+  TargetServicePort targetServicePort;
   Map<String, String> properties;
   
   ServicePortConnectors() {
     properties = new Map<String, String>();
-    sourceDataPort = new SourceDataPort();
-    targetDataPort = new TargetDataPort();
+    sourceServicePort = new SourceServicePort();
+    targetServicePort = new TargetServicePort();
   }
   
   void loadFromXmlElement(xml.XmlElement elem) {
     properties = new Map<String, String>();
-    sourceDataPort = new SourceDataPort();
-    targetDataPort = new TargetDataPort();
+    sourceServicePort = new SourceServicePort();
+    targetServicePort = new TargetServicePort();
 
     name = elem.getAttribute('name', namespace: ns_rts);
     connectorId= elem.getAttribute('connectorId', namespace: ns_rts);
-    dataType = elem.getAttribute('dataType', namespace: ns_rts);
-    dataflowType = elem.getAttribute('dataflowType', namespace: ns_rts);
-    interfaceType = elem.getAttribute('interfaceType', namespace: ns_rts);
-    subscriptionType = elem.getAttribute('subscriptionType', namespace: ns_rts);
-    pushInterval = elem.getAttribute('pushInterval', namespace: ns_rts);
     visible = elem.getAttribute('visible', namespace: ns_rtsExt);
     
-    
-    
     elem.findAllElements('sourceDataPort', namespace : ns_rts).forEach((e) {
-      sourceDataPort.loadFromXmlElement(e);
+      sourceServicePort.loadFromXmlElement(e);
     });    
     
     elem.findAllElements('TargetDataPort', namespace : ns_rts).forEach((e) {
-      targetDataPort.loadFromXmlElement(e);
+      targetServicePort.loadFromXmlElement(e);
     });
 
     Properties prop = new Properties();
@@ -64,7 +57,26 @@ class ServicePortConnectors {
   
   
   void buildXml(xml.XmlBuilder builder) {
-    
+    builder.element('ServicePortConnectors', namespace: ns_rts,
+          attributes: {
+            'rts:name': name,
+            'rts:connectorId': connectorId,
+            'rtsExt:visible' : visible
+          },
+          nest : () {
+            sourceServicePort.buildXml(builder);
+            targetServicePort.buildXml(builder);
+            properties.keys.forEach((name_) {
+              builder.element('Properties', namespace : ns_rtsExt,
+                  attributes : {
+                    'rtsExt:name' : name_,
+                    'rtsExt:value' : properties[name_]
+                  }
+              );
+            });
+          }
+      );
+  
   }
 
 }
