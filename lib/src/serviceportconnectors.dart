@@ -36,11 +36,11 @@ class ServicePortConnectors {
     connectorId= elem.getAttribute('connectorId', namespace: ns_rts);
     visible = elem.getAttribute('visible', namespace: ns_rtsExt);
     
-    elem.findAllElements('sourceDataPort', namespace : ns_rts).forEach((e) {
+    elem.findAllElements('sourceServicePort', namespace : ns_rts).forEach((e) {
       sourceServicePort.loadFromXmlElement(e);
     });    
     
-    elem.findAllElements('TargetDataPort', namespace : ns_rts).forEach((e) {
+    elem.findAllElements('targetServicePort', namespace : ns_rts).forEach((e) {
       targetServicePort.loadFromXmlElement(e);
     });
 

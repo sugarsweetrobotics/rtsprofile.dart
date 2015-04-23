@@ -44,7 +44,7 @@ class DataPortConnectors {
       sourceDataPort.loadFromXmlElement(e);
     });    
     
-    elem.findAllElements('TargetDataPort', namespace : ns_rts).forEach((e) {
+    elem.findAllElements('targetDataPort', namespace : ns_rts).forEach((e) {
       targetDataPort.loadFromXmlElement(e);
     });
 

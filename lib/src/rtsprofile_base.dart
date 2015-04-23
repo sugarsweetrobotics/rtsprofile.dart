@@ -105,6 +105,10 @@ class RTSProfile {
     return builder.build();
   }
   
+  String toString() {
+    return buildXml().toXmlString(pretty: true);
+  }
+  
   RTSProfile clone() {
     xml.XmlDocument doc = this.buildXml();
     return RTSProfile.createFromXmlDocument(doc);
