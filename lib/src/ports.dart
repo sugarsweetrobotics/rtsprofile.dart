@@ -19,8 +19,8 @@ class TargetDataPort {
   
   void loadFromXmlElement(xml.XmlElement elem) {
     componentId = elem.getAttribute('componentId', namespace: ns_rts);
-    instanceName = elem.getAttribute('instanceName', namespace: ns_rtsExt);
-    portName = elem.getAttribute('portName', namespace: ns_rtsExt);
+    instanceName = elem.getAttribute('instanceName', namespace: ns_rts);
+    portName = elem.getAttribute('portName', namespace: ns_rts);
     properties = new Properties();
     elem.findAllElements('Properties', namespace : ns_rtsExt).forEach((e) {
       properties.loadFromXmlElement(e);
@@ -33,8 +33,8 @@ class TargetDataPort {
     builder.element('targetDataPort', namespace : ns_rts,
         attributes : {
           'rts:componentId' : componentId,
-          'rtsExt:instanceName' : instanceName,
-          'rtsExt:portName' : portName
+          'rts:instanceName' : instanceName,
+          'rts:portName' : portName
         },
         nest : () {
           properties.buildXml(builder);
@@ -56,8 +56,8 @@ class SourceDataPort {
   
   void loadFromXmlElement(xml.XmlElement elem) {
     componentId = elem.getAttribute('componentId', namespace: ns_rts);
-    instanceName = elem.getAttribute('instanceName', namespace: ns_rtsExt);
-    portName = elem.getAttribute('portName', namespace: ns_rtsExt);
+    instanceName = elem.getAttribute('instanceName', namespace: ns_rts);
+    portName = elem.getAttribute('portName', namespace: ns_rts);
     properties = new Properties();
     elem.findAllElements('Properties', namespace : ns_rtsExt).forEach((e) {
       properties.loadFromXmlElement(e);
@@ -69,8 +69,8 @@ class SourceDataPort {
     builder.element('sourceDataPort', namespace : ns_rts,
         attributes : {
           'rts:componentId' : componentId,
-          'rtsExt:instanceName' : instanceName,
-          'rtsExt:portName' : portName
+          'rts:instanceName' : instanceName,
+          'rts:portName' : portName
         },
         nest : () {
           properties.buildXml(builder);
@@ -91,8 +91,8 @@ class SourceServicePort {
   
   void loadFromXmlElement(xml.XmlElement elem) {
     componentId = elem.getAttribute('componentId', namespace: ns_rts);
-    instanceName = elem.getAttribute('instanceName', namespace: ns_rtsExt);
-    portName = elem.getAttribute('portName', namespace: ns_rtsExt);
+    instanceName = elem.getAttribute('instanceName', namespace: ns_rts);
+    portName = elem.getAttribute('portName', namespace: ns_rts);
     properties = new Properties();
     elem.findAllElements('Properties', namespace : ns_rtsExt).forEach((e) {
       properties.loadFromXmlElement(e);
@@ -104,8 +104,8 @@ class SourceServicePort {
     builder.element('sourceServicePort', namespace : ns_rts,
         attributes : {
           'rts:componentId' : componentId,
-          'rtsExt:instanceName' : instanceName,
-          'rtsExt:portName' : portName
+          'rts:instanceName' : instanceName,
+          'rts:portName' : portName
         },
         nest : () {
           properties.buildXml(builder);
@@ -129,22 +129,20 @@ class TargetServicePort {
   
   void loadFromXmlElement(xml.XmlElement elem) {
     componentId = elem.getAttribute('componentId', namespace: ns_rts);
-    instanceName = elem.getAttribute('instanceName', namespace: ns_rtsExt);
-    portName = elem.getAttribute('portName', namespace: ns_rtsExt);
+    instanceName = elem.getAttribute('instanceName', namespace: ns_rts);
+    portName = elem.getAttribute('portName', namespace: ns_rts);
     properties = new Properties();
     elem.findAllElements('Properties', namespace : ns_rtsExt).forEach((e) {
       properties.loadFromXmlElement(e);
     });
   }
   
-
-  
   void buildXml(xml.XmlBuilder builder) {
     builder.element('targetServicePort', namespace : ns_rts,
         attributes : {
           'rts:componentId' : componentId,
-          'rtsExt:instanceName' : instanceName,
-          'rtsExt:portName' : portName
+          'rts:instanceName' : instanceName,
+          'rts:portName' : portName
         },
         nest : () {
           properties.buildXml(builder);

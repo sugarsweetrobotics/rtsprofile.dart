@@ -10,8 +10,8 @@ class Location {
   
   String height;
   String width;
-  String x;
-  String y;
+  String x = "0";
+  String y = "0";
   
   Location() {}
   
@@ -22,7 +22,6 @@ class Location {
 
     x = elem.getAttribute('x', namespace: ns_rtsExt);
     y = elem.getAttribute('y', namespace: ns_rtsExt);
-    
   }
   
   static  Location load(xml.XmlElement elem) {
@@ -36,7 +35,9 @@ class Location {
       attributes: {
         'rtsExt:direction': direction,
         'rtsExt:width': width,
-        'rtsExt:height': height
+        'rtsExt:height': height,
+        'rtsExt:x': x,
+        'rtsExt:y': y
         });
   }
 }
